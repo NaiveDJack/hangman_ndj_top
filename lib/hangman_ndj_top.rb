@@ -1,10 +1,14 @@
 # frozen_string_literal:true
 
+require 'erb'
+require 'yaml'
+
 require_relative 'hangman_ndj_top/version'
 require_relative 'display'
+require_relative 'game'
 
 # main class, calls all other methods
-class Game
+class Hangman
   include Display
 
   def initialize
@@ -29,9 +33,8 @@ class Game
   end
 
   def start
-    p 'Area under construction'
-    Display.gallows(7)
-    exit
+    @game = Game.new
+    initialize
   end
 
   def load
@@ -42,7 +45,8 @@ class Game
   end
 
   def self.save
-    'stores the information about the game in a file
+    p 'stores the information about the game in a file
+    information are: secret word, masked password, wrong letters, lives
     encrypts it?
     prompts continue game/quit'
   end
@@ -55,4 +59,4 @@ class Game
   end
 end
 
-game = Game.new
+hangman = Hangman.new

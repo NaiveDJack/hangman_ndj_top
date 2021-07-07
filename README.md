@@ -1,6 +1,6 @@
 # HangmanNdjTop
 
-A game of Hangman featuring ASCII art. 
+A CLI game of Hangman featuring ASCII art. 
 by Daniele Latella(github.com/naivedjack)
 Stickman art by Joan G. Stark @ asciiart.eu
 Project is part of The Odin Project curriculum
@@ -33,7 +33,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hangman_ndj_top.
+Bug reports and pull requests are welcome on GitHub at https://github.com/naivedjack/hangman_ndj_top.
 
 
 ## License
