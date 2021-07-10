@@ -15,12 +15,14 @@ module Display
     puts '1. New Game / 2. Load/Delete Game / 3. Game rules'
   end
 
+  # loads the ascii of the gallows
   def self.gallows(lives)
     image = File.readlines('lib/graphics/gallows.txt')
     p lives
     puts image[lives * 10..lives * 10 + 8] if lives.between?(0, 7)
   end
 
+  # main game display
   def self.guess_board(lives, wrong_letters, masked_password)
     gallows(lives)
     puts '', "the word is #{masked_password}", ''
@@ -29,6 +31,7 @@ module Display
     puts "Type 'save' to save the game. Type 'exit' to go back to main screen.", ''
   end
 
+  # showed saved games stored in /saves
   def self.saved_games
     saves = Dir['./saves/*']
     puts 'Available saved games:'

@@ -70,7 +70,7 @@ class Game
   # avoid using the same letter twice
   # if you use the same word twice you deserve losing lives
   def input_validation(guess, password)
-    if (@masked_password.include? guess) || (@wrong_letters.include? guess) # add only alphabet input?
+    if (@masked_password.include? guess) || (@wrong_letters.include? guess)
       puts 'You already tried that one!', ''
     else
       guess_letter(guess, password) ? right_letter(guess) : wrong_letter(guess)
@@ -100,6 +100,7 @@ class Game
     puts "You made a mistake! You're closer to the hanging...", '' unless @lives.zero?
   end
 
+  # when input 'save' or 'exit' handles the necessary actions
   def command(action)
     Hangman.save(self) if action == 'save'
     puts '', 'Do you want to leave this game? (y/n)'

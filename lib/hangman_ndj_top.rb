@@ -14,7 +14,6 @@ class Hangman
   def initialize
     Display.start_screen
     mode_choice(gets.chomp)
-    # @game = Object.new
   end
 
   def mode_choice(choice)
@@ -40,7 +39,7 @@ class Hangman
     initialize
   end
 
-  # load starts an instance with the given state of the game
+  # loading and deleting saves
   def manage_saves(command = gets.chomp.downcase)
     saves = Dir['./saves/*']
     case command
@@ -68,16 +67,16 @@ class Hangman
     initialize
   end
 
-  # save gets the state of the game and stores it in a file
+  # saving method
   def self.save(game)
     filename = "./saves/#{Time.now}.txt"
-    p filename
     state = [game.password, game.guesses]
     File.open(filename, 'w+') do |file|
       file.write(YAML.dump(state))
     end
   end
 
+  # quit the game
   def quit
     puts 'Are you sure you want to quit? (y/n)'
     exit if gets.chomp.downcase == 'y'
