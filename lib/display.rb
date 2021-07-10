@@ -7,12 +7,12 @@ module Display
     credits = 'by Daniele Latella(github.com/naivedjack)
              Stickman art by Joan G. Stark @ asciiart.eu'
     puts 'Welcome to'
-    puts title, credits, '', '1. New Game / 2. Load Game / 3. Game rules / Press q to quit'
+    puts title, credits, '', '1. New Game / 2. Load/Delete Game / 3. Game rules / Press q to quit'
   end
 
   def self.rules
     puts 'Hangman is a game where you guess a word or you die!', ''
-    puts '1. New Game / 2. Load Game / 3. Game rules'
+    puts '1. New Game / 2. Load/Delete Game / 3. Game rules'
   end
 
   def self.gallows(lives)
@@ -27,5 +27,12 @@ module Display
     puts "Not included: #{wrong_letters}", ''
     puts 'Try a letter to get closer to the secret word. Or try and guess the word.'
     puts "Type 'save' to save the game. Type 'exit' to go back to main screen.", ''
+  end
+
+  def self.saved_games
+    saves = Dir['./saves/*']
+    puts 'Available saved games:'
+    saves.each.with_index { |save, index| puts "#{index}. #{save[8..-5]}" }
+    puts '', 'Enter load [savefile number] to load a game, or delete [savefile number] to delete it'
   end
 end

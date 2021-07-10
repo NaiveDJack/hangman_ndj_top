@@ -1,17 +1,21 @@
 # frozen_string_literal:true
 
 require_relative 'display'
+require 'time'
+require 'yaml'
 
 # game logic functions class
 class Game
   include Display
 
-  def initialize(password = word_picker, lives = 7, wrong_letters = [])
+  attr_reader :password, :guesses
+
+  def initialize(password = word_picker, guesses = [])
     @password = password
     @masked_password = mask_password(@password)
-    @lives = lives
-    @wrong_letters = wrong_letters
-    game_loop
+    @lives = 7
+    @wrong_letters = []
+    @guesses = guesses
   end
 
   def game_loop
@@ -56,6 +60,7 @@ class Game
     when 4
       command(guess)
     when password.length
+      guesses.push(guess)
       password == guess ? right_word(password) : error
     else
       p 'wrong input'
@@ -73,6 +78,7 @@ class Game
   end
 
   def guess_letter(letter, password)
+    @guesses.push(letter)
     password.include? letter
   end
 
@@ -95,7 +101,7 @@ class Game
   end
 
   def command(action)
-    Hangman.save if action == 'save'
+    Hangman.save(self) if action == 'save'
     puts '', 'Do you want to leave this game? (y/n)'
     'exit' if gets.chomp.downcase == 'y'
   end
